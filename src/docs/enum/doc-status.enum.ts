@@ -1,0 +1,5 @@
+export enum DocStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}

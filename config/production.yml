@@ -1,0 +1,9 @@
+database:
+  host: 'localhost'
+  username: 'root'
+  password: 'password'
+  database: 'document'
+  synchronize: false
+
+jwt:
+  secret: 'sekret-key'
