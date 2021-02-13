@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Route } from 'react-router';
-import './App.scss';
+import React, { Fragment } from "react";
+import { Route } from "react-router";
+import "./App.scss";
 
 function App() {
   return (
