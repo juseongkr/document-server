@@ -2,10 +2,13 @@ import { observable, action } from "mobx";
 
 export default class DocumentsStore {
   @observable documents = [];
+  @observable inbox = [];
+  @observable outbox = [];
+  @observable archive = [];
   @observable filters = { status: "", search: "", category: "" };
 
   constructor(documentsService) {
-    this.documentsService = documentsService
+    this.documentsService = documentsService;
   }
 
   updateFilters({ status, search, category }) {
@@ -18,6 +21,9 @@ export default class DocumentsStore {
   @action
   resetDocuments() {
     this.documents = [];
+    this.inbox = [];
+    this.outbox = [];
+    this.archive = [];
   }
 
   @action
@@ -30,8 +36,40 @@ export default class DocumentsStore {
   }
 
   @action
+  async fetchInbox() {
+    const result = await this.documentsService.fetchInbox();
+
+    if (result) {
+      this.inbox = result.data;
+    }
+  }
+
+  @action
+  async fetchArchive() {
+    const result = await this.documentsService.fetchArchive();
+
+    if (result) {
+      this.archive = result.data;
+    }
+  }
+
+  @action
+  async fetchOutbox() {
+    const result = await this.documentsService.fetchOutbox();
+
+    if (result) {
+      this.outbox = result.data;
+    }
+  }
+
+  @action
   async createDocument(title, description, category, approvers) {
-    const result = await this.documentsService.createDocument(title, description, category, approvers);
+    const result = await this.documentsService.createDocument(
+      title,
+      description,
+      category,
+      approvers
+    );
 
     if (result) {
       this.documents.push(result.data);

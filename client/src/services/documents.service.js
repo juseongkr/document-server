@@ -21,6 +21,18 @@ export default class DocumentsService extends BaseHttpService {
     return this.get(`docs` + (queryStr ? `?${queryStr}` : ""));
   }
 
+  fetchInbox() {
+    return this.get(`docs/inbox`);
+  }
+
+  fetchOutbox() {
+    return this.get(`docs/outbox`);
+  }
+
+  fetchArchive() {
+    return this.get(`docs/archive`);
+  }
+  
   async deleteDocument(id) {
     await this.delete(`docs/id/${id}`);
   }

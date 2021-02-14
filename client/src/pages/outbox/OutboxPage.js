@@ -8,7 +8,6 @@ import ArchiveIcon from "@material-ui/icons/Archive";
 import SignOutIcon from "@material-ui/icons/ExitToApp";
 import styled from "styled-components";
 import Document from "../../components/Document";
-import DocumentsFilters from "../../components/DocumentsFilters";
 
 const DocumentsWrapper = styled.div`
   width: 100%;
@@ -56,9 +55,9 @@ const SignOutIconContainer = styled.div`
 
 @inject("documentsStore", "routerStore", "userStore")
 @observer
-class DocumentsPage extends Component {
+class OutboxPage extends Component {
   componentDidMount() {
-    this.props.documentsStore.fetchDocuments();
+    this.props.documentsStore.fetchOutbox();
   }
 
   handleSignOut = () => {
@@ -71,7 +70,7 @@ class DocumentsPage extends Component {
   renderDocuments = () => {
     const { documentsStore } = this.props;
 
-    if (!documentsStore.documents.length) {
+    if (!documentsStore.outbox.length) {
       return (
         <EmptyDocumentsPlaceholder>
           No documents available. Create one?
@@ -79,7 +78,7 @@ class DocumentsPage extends Component {
       );
     }
 
-    return documentsStore.documents.map((doc) => (
+    return documentsStore.outbox.map((doc) => (
       <Document
         key={doc.id}
         id={doc.id}
@@ -127,7 +126,6 @@ class DocumentsPage extends Component {
               <AddIcon />
               Create
             </Fab>
-
             <SignOutIconContainer>
               <IconButton onClick={this.handleSignOut}>
                 <SignOutIcon className="signOutIcon" />
@@ -135,13 +133,10 @@ class DocumentsPage extends Component {
             </SignOutIconContainer>
           </CreateButtonContainer>
         </DocumentsHeader>
-
-        <DocumentsFilters />
-
         <DocumentsContainer>{this.renderDocuments()}</DocumentsContainer>
       </DocumentsWrapper>
     );
   }
 }
 
-export default DocumentsPage;
+export default OutboxPage;
