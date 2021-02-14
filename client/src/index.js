@@ -1,31 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import App from "./App";
-import { createBrowserHistory } from "history";
-import reportWebVitals from "./reportWebVitals";
-import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import { Provider } from "mobx-react";
+import { createBrowserHistory } from "history";
+import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import { Router } from "react-router";
 
-const services = {};
-const stores = {
-  routerStore: new RouterStore(),
-};
+import "./index.scss";
+import App from "./App";
+import DocumentsService from "./services/documents.service";
+import DocumentsStore from "./stores/documents.store";
+import UserStore from "./stores/user.store";
+import AuthService from "./services/auth.service";
 
+const services = {};
+const stores = {};
+
+stores.routerStore = new RouterStore();
 const browserHistory = createBrowserHistory();
 const history = syncHistoryWithStore(browserHistory, stores.routerStore);
 
-ReactDOM.render(
+services.documentsService = new DocumentsService(stores.routerStore);
+services.authService = new AuthService();
+
+stores.documentsStore = new DocumentsStore(services.documentsService);
+stores.userStore = new UserStore(services.authService);
+
+const Root = (
   <Provider {...stores}>
     <Router history={history}>
       <App />
     </Router>
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
+ReactDOM.render(Root, document.getElementById("root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA

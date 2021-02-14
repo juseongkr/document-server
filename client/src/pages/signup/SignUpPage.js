@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, TextField } from "@material-ui/core";
 import styled from "styled-components";
 
-import "./SignInPage.scss";
+import "./SignUpPage.scss";
 import { inject } from "mobx-react";
 import ErrorMessage from "../../components/ErrorMessage";
 
@@ -23,31 +23,26 @@ const FormField = styled(TextField)`
 `;
 
 @inject("userStore", "routerStore")
-class SignInPage extends Component {
+class SignUpPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      errorMesssage: null,
+      errorMessage: null,
     };
   }
 
   submit = async () => {
-    this.setState({ errorMessage: null });
     const { username, password } = this.state;
 
     try {
-      await this.props.userStore.signin(username, password);
-      this.props.routerStore.push("/docs");
+      await this.props.userStore.signup(username, password);
+      this.props.routerStore.push("/signin");
     } catch (error) {
       const errorMessage = error.response.data.message;
       this.setState({ errorMessage });
     }
-  };
-
-  goToSignUp = () => {
-    this.props.routerStore.push("/signup");
   };
 
   render() {
@@ -56,8 +51,8 @@ class SignInPage extends Component {
     return (
       <div className="fullscreen-wrapper">
         <FormContainer>
-          <Heading>Welcome to Document System!</Heading>
-          <p>Fill in your username and password to sign in.</p>
+          <Heading>Join us!</Heading>
+          <p>Start managing documents easily.</p>
 
           {errorMessage && <ErrorMessage message={this.state.errorMessage} />}
 
@@ -84,17 +79,12 @@ class SignInPage extends Component {
           <hr />
           <div>
             <Button
-              style={{ marginBottom: "10px" }}
               fullWidth
               variant="contained"
               color="primary"
               onClick={this.submit}
             >
-              SIGN IN
-            </Button>
-
-            <Button fullWidth onClick={this.goToSignUp}>
-              Don't have an account? Sign up now!
+              SIGN UP
             </Button>
           </div>
         </FormContainer>
@@ -103,4 +93,4 @@ class SignInPage extends Component {
   }
 }
 
-export default SignInPage;
+export default SignUpPage;

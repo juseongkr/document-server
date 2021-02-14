@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class BaseHttpService {
-  URL = "http://localhost:3000";
+  BASE_URL = "http://localhost:3000/api";
   _accessToken = null;
 
   constructor(routerStore) {
@@ -11,50 +11,29 @@ export default class BaseHttpService {
   async get(endpoint, options = {}) {
     Object.assign(options, this._getCommonOptions());
     return axios
-      .get(`${this.URL}/${endpoint}`, options)
+      .get(`${this.BASE_URL}/${endpoint}`, options)
       .catch((error) => this._handleHttpError(error));
   }
 
   async post(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions());
     return axios
-      .post(`${this.URL}/${endpoint}`, data, options)
+      .post(`${this.BASE_URL}/${endpoint}`, data, options)
       .catch((error) => this._handleHttpError(error));
   }
 
   async delete(endpoint, options = {}) {
     Object.assign(options, this._getCommonOptions());
     return axios
-      .delete(`${this.URL}/${endpoint}`, options)
+      .delete(`${this.BASE_URL}/${endpoint}`, options)
       .catch((error) => this._handleHttpError(error));
   }
 
   async patch(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions());
     return axios
-      .patch(`${this.URL}/${endpoint}`, data, options)
+      .patch(`${this.BASE_URL}/${endpoint}`, data, options)
       .catch((error) => this._handleHttpError(error));
-  }
-
-  get accessToken() {
-    return this._accessToken ? this._accessToken : this.loadToken();
-  }
-
-  saveToken(accessToken) {
-    this._accessToken = accessToken;
-
-    return localStorage.setItem("accessToken", accessToken);
-  }
-
-  loadToken() {
-    const token = localStorage.getItem("accessToken");
-    this._accessToken = token;
-
-    return token;
-  }
-
-  removeToken() {
-    localStorage.removeItem("accessToken");
   }
 
   _handleHttpError(error) {
@@ -62,12 +41,12 @@ export default class BaseHttpService {
 
     if (statusCode !== 401) {
       throw error;
+    } else {
+      return this._handle401();
     }
-
-    return this._handleUnauthorized();
   }
 
-  _handleUnauthorized() {
+  _handle401() {
     this.routerStore.push("/signin");
   }
 
@@ -79,5 +58,24 @@ export default class BaseHttpService {
         Authorization: `Bearer ${token}`,
       },
     };
+  }
+
+  get accessToken() {
+    return this._accessToken ? this._accessToken : this.loadToken();
+  }
+
+  saveToken(accessToken) {
+    this._accessToken = accessToken;
+    return localStorage.setItem("accessToken", accessToken);
+  }
+
+  loadToken() {
+    const token = localStorage.getItem("accessToken");
+    this._accessToken = token;
+    return token;
+  }
+
+  removeToken() {
+    localStorage.removeItem("accessToken");
   }
 }
