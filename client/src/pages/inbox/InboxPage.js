@@ -75,7 +75,7 @@ class InboxPage extends Component {
     if (!documentsStore.inbox.length) {
       return (
         <EmptyDocumentsPlaceholder>
-          No documents available. Create one?
+          Inbox is empty.
         </EmptyDocumentsPlaceholder>
       );
     }
@@ -108,6 +108,7 @@ class InboxPage extends Component {
             </Fab>
             <Fab
               variant="extended"
+              style={{ color: "#1c2e8a" }}
               onClick={() => this.props.routerStore.push("/docs/inbox")}
             >
               <InboxIcon />

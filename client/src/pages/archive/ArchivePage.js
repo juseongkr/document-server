@@ -75,7 +75,7 @@ class ArchivePage extends Component {
     if (!documentsStore.archive.length) {
       return (
         <EmptyDocumentsPlaceholder>
-          No documents available. Create one?
+          Archive is empty.
         </EmptyDocumentsPlaceholder>
       );
     }
@@ -123,6 +123,7 @@ class ArchivePage extends Component {
             </Fab>
             <Fab
               variant="extended"
+              style={{ color: "#1c2e8a" }}
               onClick={() => this.props.routerStore.push("/docs/archive")}
             >
               <ArchiveIcon />

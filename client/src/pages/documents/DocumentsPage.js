@@ -101,7 +101,7 @@ class DocumentsPage extends Component {
           <CreateButtonContainer>
             <Fab
               variant="extended"
-              style={{ margin: "10px" }}
+              style={{ margin: "10px", color: "#1c2e8a" }}
               onClick={() => this.props.routerStore.push("/docs")}
             >
               <DescriptionIcon />

@@ -75,7 +75,7 @@ class OutboxPage extends Component {
     if (!documentsStore.outbox.length) {
       return (
         <EmptyDocumentsPlaceholder>
-          No documents available. Create one?
+          Outbox is empty.
         </EmptyDocumentsPlaceholder>
       );
     }
@@ -115,7 +115,7 @@ class OutboxPage extends Component {
             </Fab>
             <Fab
               variant="extended"
-              style={{ margin: "10px" }}
+              style={{ margin: "10px", color: "#1c2e8a" }}
               onClick={() => this.props.routerStore.push("/docs/outbox")}
             >
               <OutboxIcon />
