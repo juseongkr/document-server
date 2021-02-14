@@ -63,6 +63,22 @@ export default class DocumentsStore {
   }
 
   @action
+  async approveDocument(id) {
+    await this.documentsService.approveDocument(id);
+    this.fetchInbox();
+    this.fetchOutbox();
+    this.fetchArchive();
+  }
+
+  @action
+  async rejectDocument(id) {
+    await this.documentsService.rejectDocument(id);
+    this.fetchInbox();
+    this.fetchOutbox();
+    this.fetchArchive();
+  }
+
+  @action
   async createDocument(title, description, category, approvers) {
     const result = await this.documentsService.createDocument(
       title,

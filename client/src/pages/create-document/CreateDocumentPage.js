@@ -93,7 +93,7 @@ class CreateDocumentPage extends Component {
           </FormControl>
           <FormControl fullWidth>
             <TextField
-              label="Approvers"
+              label="Approvers (seperated by comma)"
               placeholder="user1@email.com, user2@email.com, user3@email.com"
               margin="normal"
               variant="outlined"

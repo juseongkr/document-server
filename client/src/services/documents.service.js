@@ -32,7 +32,15 @@ export default class DocumentsService extends BaseHttpService {
   fetchArchive() {
     return this.get(`docs/archive`);
   }
-  
+
+  approveDocument(id) {
+    return this.patch(`docs/inbox/id/${id}`, { action: "approve" });
+  }
+
+  rejectDocument(id) {
+    return this.patch(`docs/inbox/id/${id}`, { action: "reject" });
+  }
+
   async deleteDocument(id) {
     await this.delete(`docs/id/${id}`);
   }

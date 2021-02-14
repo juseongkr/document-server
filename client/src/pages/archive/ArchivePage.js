@@ -6,6 +6,7 @@ import InboxIcon from "@material-ui/icons/Inbox";
 import OutboxIcon from "@material-ui/icons/AllInbox";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import SignOutIcon from "@material-ui/icons/ExitToApp";
+import DescriptionIcon from "@material-ui/icons/Description";
 import styled from "styled-components";
 import Document from "../../components/Document";
 
@@ -25,6 +26,7 @@ const DocumentsHeader = styled.div`
 
 const Title = styled.h1`
   width: 100%;
+  text-align: center;
   color: #edf4ff;
 `;
 
@@ -93,9 +95,17 @@ class ArchivePage extends Component {
   render() {
     return (
       <DocumentsWrapper>
+        <Title>Document System</Title>
         <DocumentsHeader>
-          <Title>Document System</Title>
           <CreateButtonContainer>
+            <Fab
+              variant="extended"
+              style={{ margin: "10px" }}
+              onClick={() => this.props.routerStore.push("/docs")}
+            >
+              <DescriptionIcon />
+              All
+            </Fab>
             <Fab
               variant="extended"
               onClick={() => this.props.routerStore.push("/docs/inbox")}
@@ -121,6 +131,7 @@ class ArchivePage extends Component {
             <Fab
               variant="extended"
               style={{ margin: "10px" }}
+              color="primary"
               onClick={() => this.props.routerStore.push("/docs/create")}
             >
               <AddIcon />
