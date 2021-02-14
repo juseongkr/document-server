@@ -1,6 +1,8 @@
 # Document System 📄
 Welcome to document system service. 👋
 
+<img width=80% alt="main" src="https://user-images.githubusercontent.com/10775915/107872409-8bff4900-6eed-11eb-84fd-74320da2cf60.png">
+
 # Contents 📦
 - [Stacks](#stacks)
 - [Architecture](#architecture)
@@ -64,7 +66,7 @@ server
 # <a id="database">Database</a>
 > MySQL 8 ER-Diagram
 
-<img width=60% alt="db" src="https://user-images.githubusercontent.com/10775915/102712694-5fbcb700-4306-11eb-923e-7b2e1ab30ffe.png">
+<img width=80% alt="db" src="https://user-images.githubusercontent.com/10775915/102712694-5fbcb700-4306-11eb-923e-7b2e1ab30ffe.png">
 
 # <a id="getting-started">Getting started</a>
 Before getting started, you need config files at ```config/``` follwing the YAML file located in ```config/``` directory. (ex. ```config/default.yml```, ```config/development.yml```)
