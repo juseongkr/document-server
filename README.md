@@ -6,6 +6,8 @@ Welcome to document system service. 👋
 # Contents 📦
 - [Stacks](#stacks)
 - [Architecture](#architecture)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
 - [Database](#database)
 - [Getting started](#getting-started)
   - [Installation](#installation)
@@ -28,11 +30,39 @@ Welcome to document system service. 👋
   - [Reject the document](#reject)
 
 # <a id="stacks">Stacks</a>
+* [React.js](https://reactjs.org)
 * [NestJS](https://nestjs.com)
 * [TypeScript](https://www.typescriptlang.org)
 * [MySQL 8](https://www.mysql.com)
 
 # <a id="architecture">Architecture</a>
+
+## <a id="frontend">Frontend</a>
+This is the directory structure for ```frontend```, it is created by ```create-react-app``` with state management library ```mobx```
+
+```
+client
+├── build
+├── public
+├── src
+│   ├── App.js
+│   ├── App.scss
+│   ├── index.js
+│   ├── index.scss
+│   ├── components
+│   │   └── ...
+│   ├── pages
+│   │   └── ...
+│   ├── services
+│   │   └── ...
+│   └── stores
+│       └── ...
+├── config-overrides.js
+├── package.json
+└── tsconfig.json
+```
+
+## <a id="backend">Backend</a>
 ```server``` directory structure is as follows, and the necessary information is contained in each folder.
 
 ```
