@@ -46,7 +46,7 @@ export default class DocumentsService extends BaseHttpService {
   }
 
   createDocument(title, description, category, approvers) {
-    approvers = [approvers.split(",")];
+    approvers = approvers.trim().replace(/ /g, "").split(",").filter(Boolean)
     return this.post(`docs`, { title, description, category, approvers });
   }
 }
