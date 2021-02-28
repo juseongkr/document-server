@@ -174,7 +174,7 @@ $ docker run -it -p 3000:3000 server
 # <a id="api-examples">API Examples</a>
 
 ## <a id="sign-up">Sign up</a>
-POST: /api/auth/signup
+POST: ```/api/auth/signup```
 
 ### Request
 ```bash
@@ -184,7 +184,7 @@ $ curl -X POST localhost:3000/api/auth/signup \
 ```
 
 ## <a id="sign-in">Sign in</a>
-POST: /api/auth/signin
+POST: ```/api/auth/signin```
 
 ### Request
 ```bash
@@ -202,7 +202,7 @@ $ curl -X POST localhost:3000/api/auth/signin \
 
 ## <a id="get-all">Get all documents (with query)</a>
 > <h3>This server authenticates based on <strong>bearer tokens</strong>. Therefore, you must send token together in the <strong>header</strong> of all requests. </h3>
-GET: /api/docs
+GET: ```/api/docs```
 
 ### Request
 | parameter |      value     |
@@ -260,7 +260,7 @@ localhost:3000/api/docs?search=api&category=javascript \
 ```
 
 ## <a id="get-id">Get document by ID</a>
-GET: /api/docs/id/:id
+GET: ```/api/docs/id/${id}```
 
 ### Request
 ```bash
@@ -327,7 +327,7 @@ localhost:3000/api/docs/id/2 \
 ```
 
 ## <a id="create">Create a new document</a>
-POST: /api/docs
+POST: ```/api/docs```
 
 ### Request
 | key        |      value     |
@@ -364,7 +364,7 @@ localhost:3000/api/docs
 ## <a id="update">Update the document</a>
 > <h3> Only the user who created the document can update it. </h3>
 
-PATCH: /api/docs
+PATCH: ```/api/docs```
 
 ### Request
 | key        |      value     |
@@ -434,7 +434,7 @@ localhost:3000/api/docs/id/1
 ```
 
 ## <a id="inbox">Get Inbox</a>
-GET: api/docs/inbox
+GET: ```api/docs/inbox```
 
 ### Request
 ```bash
@@ -444,7 +444,7 @@ localhost:3000/api/docs/inbox
 ```
 
 ## <a id="outbox">Get Outbox</a>
-GET: api/docs/outbox
+GET: ```api/docs/outbox```
 
 ### Request
 ```bash
@@ -454,7 +454,7 @@ localhost:3000/api/docs/outbox
 ```
 
 ## <a id="archive">Get Archive</a>
-GET: api/docs/archive
+GET: ```api/docs/archive```
 
 ### Request
 ```bash
@@ -464,7 +464,7 @@ localhost:3000/api/docs/archive
 ```
 
 ## <a id="approve">Approve the document</a>
-PATCH: api/docs/inbox/id/:id
+PATCH: ```api/docs/inbox/id/${id}```
 
 ### Request
 | key        |      value     |
@@ -481,7 +481,7 @@ localhost:3000/api/docs/inbox/id/1
 ```
 
 ## <a id="reject">Reject the document</a>
-PATCH: api/docs/inbox/id/:id
+PATCH: ```api/docs/inbox/id/${id}```
 
 ### Request
 | key        |      value     |
