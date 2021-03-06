@@ -364,7 +364,7 @@ localhost:3000/api/docs
 ## <a id="update">Update the document</a>
 > <h3> Only the user who created the document can update it. </h3>
 
-PATCH: ```/api/docs```
+PATCH: ```/api/docs/id/${id}```
 
 ### Request
 | key        |      value     |
